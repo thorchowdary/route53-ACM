@@ -1,0 +1,63 @@
+route53--> is it global service
+
+how www.xyz.com works:
+---------------------------------
+user enter an url(www.xyz.com in the web browser)
+the internet service provider appends(.) which is root name server to the url
+---->www.xyz.com.
+and then root name server tells about where to search in this case it will tell to search
+in .com(TLD)(Top Level Domain) name server
+and then it will search in that .com name server, we will be having record set(DomainName+ip) in .com name server
+
+*DNS works with UDP protocol
+
+www.xyz.com --(appends . i.e root name server)---> www.xyz.com. 
+-->root name server tell's to serach in which TLD--> .com TLD --->it will 
+search in that .com TLD(Top Level Domain) has record sets(DomainName+ip)
+
+route53 polices:-
+----------------
+we can choose the routing polices
+1.simple routing policy
+2.geo-location  -- we can map user to application based on the nearest geo-location
+routing the traffic to the nearest location
+3.fail over -- if one thing fails it will map to the working one
+4.ip based
+5.weighted
+6.latency
+
+
+to check the nameserver of your domain in windows
+----------------------------------------------------
+open windows powershell
+CMD: Resolve-DnsName tharunpro.in -type NS
+
+**NLB ip address will not change ALB ip address will change
+
+we will create domain in godaddy
+domain name: tharunpro.in
+created aws hosted zone
+will change the name server of the domina in godaddy to the aws hosted zone name servers
+
+we can create a record in hosted zone and can map the 
+cnmae, aname 
+ex:
+meetp.tharunpro.in this will map to the some lb endpoint
+so whenever you access meetp.tharunpro.in you will get the application
+name to name mapping
+ip address to name mapping
+
+ACM(Amazon certified manager):
+----------------------------------
+request a certificate 
+and choose certificate type (public/private)
+and flle the fully qulaified domain name
+always give *.domainName it is called SNI/AWS SAN certs
+-----------------------------------------------------------
+in one certificate if we have multiple names 
+becuase we can add somany website to the domain name, we cannot always come and request a certificate
+for the web-site 
+
+
+
+
